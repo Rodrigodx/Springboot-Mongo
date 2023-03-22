@@ -1,7 +1,5 @@
 package com.rodrigo.springbootmongo.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -10,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rodrigo.springbootmongo.domain.User;
+import com.rodrigo.springbootmongo.services.UserService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/users")
+@AllArgsConstructor
 public class UserResource {
+	
+	private UserService userService;
 	
 	@GetMapping
 	public ResponseEntity<List<User>> findAll(){
-		User maria = new User("1", "Maria Silva", "maria@email.com");
-		User alex = new User("1", "Alex Sousa", "alex@email.com");
-		User joao = new User("1", "João Gomes", "joao@email.com");
-		List<User> list = new ArrayList<>();
-		list.addAll(Arrays.asList(maria, alex, joao));
+		
+		List<User> list = userService.findAll();
 		return ResponseEntity.ok().body(list);
 
 	}
