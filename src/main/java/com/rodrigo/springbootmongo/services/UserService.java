@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.rodrigo.springbootmongo.domain.User;
+import com.rodrigo.springbootmongo.dto.UserDTO;
 import com.rodrigo.springbootmongo.repository.UserRepository;
 import com.rodrigo.springbootmongo.services.exception.ObjectNotFoundException;
 
@@ -27,4 +28,14 @@ public class UserService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
 
 	}
+	
+	public User insert(User obj) {
+		return userRepository.insert(obj);
+	}
+	
+	
+	public User fromDTO(UserDTO objDTO) {
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+	}
+	
 }
