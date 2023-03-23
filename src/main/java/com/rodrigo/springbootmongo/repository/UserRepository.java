@@ -7,6 +7,8 @@ import com.rodrigo.springbootmongo.domain.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String>{
+
+	
 	
 	
 }	

@@ -1,10 +1,14 @@
 package com.rodrigo.springbootmongo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+
 import com.rodrigo.springbootmongo.domain.User;
 import com.rodrigo.springbootmongo.repository.UserRepository;
+import com.rodrigo.springbootmongo.services.exception.ObjectNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -18,4 +22,9 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	public User findById(String id) {
+		Optional<User> obj = userRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado"));
+
+	}
 }
